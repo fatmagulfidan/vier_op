@@ -164,56 +164,33 @@ input  { font-family: inherit }
   text-transform: uppercase;
   letter-spacing: .5px;
 }
-.mode-cards {
-  display: flex;
-  flex-direction: column;
+/* 2-column grid for 6 mode tiles */
+.mode-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
   width: 100%;
 }
-.mode-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 18px;
-  border: none;
-  border-radius: 20px;
-  background: white;
-  border-left: 6px solid var(--mc);
-  box-shadow: 0 4px 16px rgba(0,0,0,.09);
-  transition: transform .18s, box-shadow .18s;
-  text-align: left;
-}
-.mode-card:hover  { transform: translateY(-3px) scale(1.01); box-shadow: 0 10px 28px rgba(0,0,0,.15) }
-.mode-card:active { transform: scale(.97) }
-
-.mc-emoji { font-size: 2.4rem; flex-shrink: 0 }
-.mc-text  { flex: 1; display: flex; flex-direction: column }
-.mc-text strong { font-size: 1.1rem; font-weight: 900; color: var(--mc) }
-.mc-text span   { font-size: .78rem; color: #777; font-weight: 600; margin-top: 2px }
-.mc-arrow { font-size: 1.4rem; color: var(--mc) }
-
-.mode-tips {
-  display: flex;
-  gap: 10px;
-  width: 100%;
-  margin-top: 4px;
-}
-.tip-box {
-  flex: 1;
-  background: rgba(255,255,255,.7);
-  border-radius: 14px;
-  padding: 12px 10px;
+.mode-tile {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  font-size: .78rem;
-  color: #555;
-  font-weight: 600;
+  padding: 16px 10px;
+  border: none;
+  border-radius: 18px;
+  background: white;
+  border-top: 5px solid var(--mc);
+  box-shadow: 0 4px 14px rgba(0,0,0,.09);
+  transition: transform .18s, box-shadow .18s;
   text-align: center;
-  line-height: 1.4;
 }
-.tip-box span { font-size: 1.6rem }
+.mode-tile:hover  { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.15) }
+.mode-tile:active { transform: scale(.96) }
+
+.mt-emoji { font-size: 2rem }
+.mode-tile strong { font-size: .95rem; font-weight: 900; color: var(--mc); line-height: 1.2 }
+.mode-tile span   { font-size: .72rem; color: #888; font-weight: 600; line-height: 1.3 }
 
 /* ═══════════════════════════════════════════════════════════
    GAME SCREEN
@@ -549,6 +526,80 @@ input  { font-family: inherit }
 .zh-fb-wrong   { background: rgba(231,76,60,.15) !important }
 
 .zh-divider { width: 2px; background: #f0d0c0; flex-shrink: 0 }
+
+/* ═══════════════════════════════════════════════════════════
+   VERDOPPELN
+═══════════════════════════════════════════════════════════ */
+.vd-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100% }
+.vd-dots-row { display: flex; gap: 16px; justify-content: center }
+.vd-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  max-width: 100px;
+  padding: 10px;
+  background: rgba(39,174,96,.1);
+  border-radius: 12px;
+  border: 2px solid rgba(39,174,96,.3);
+}
+.vd-dot { font-size: 1.4rem; color: #27AE60; line-height: 1 }
+
+/* ═══════════════════════════════════════════════════════════
+   ERGÄNZEN ZU 10  (Ten-frame)
+═══════════════════════════════════════════════════════════ */
+.eg-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100% }
+.ten-frame {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+  padding: 10px;
+  background: rgba(192,57,43,.05);
+  border-radius: 14px;
+  border: 2px solid rgba(192,57,43,.2);
+}
+.tf-cell {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+.tf-filled { background: #C0392B; color: white }
+.tf-empty  { background: rgba(192,57,43,.1); border: 2px dashed rgba(192,57,43,.3) }
+
+/* ═══════════════════════════════════════════════════════════
+   ZAHLENFOLGE
+═══════════════════════════════════════════════════════════ */
+.zf-wrap  { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100% }
+.zf-label { font-size: .85rem; font-weight: 700; color: #555 }
+.zf-seq   { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; justify-content: center }
+.zf-item  { display: flex; align-items: center; gap: 4px }
+.zf-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #D6EAF8;
+  border: 2px solid #2980B9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #1A5276;
+}
+.zf-box-empty {
+  background: rgba(41,128,185,.08);
+  border: 2px dashed #2980B9;
+  color: #2980B9;
+  animation: pulse-stone 1.5s ease-in-out infinite;
+}
+.zf-arrow { font-size: .75rem; font-weight: 800; color: #888; min-width: 24px; text-align: center }
+
+/* Result mode label */
+.rs-mode-label { font-size: .9rem; font-weight: 700; color: #777 }
 
 /* ═══════════════════════════════════════════════════════════
    RESULT SCREEN
