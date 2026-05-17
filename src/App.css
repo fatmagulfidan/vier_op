@@ -227,7 +227,24 @@ input  { font-family: inherit }
   width: 100%;
   padding: 4px 0;
 }
-.lives { display: flex; gap: 3px; font-size: 1.35rem; min-width: 86px }
+.exit-btn {
+  font-size: 1.4rem;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255,255,255,.75);
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .15s, box-shadow .15s;
+  backdrop-filter: blur(4px);
+}
+.exit-btn:hover  { transform: scale(1.1); box-shadow: 0 4px 14px rgba(0,0,0,.15) }
+.exit-btn:active { transform: scale(.93) }
+
+.lives { display: flex; gap: 3px; font-size: 1.35rem; justify-content: center }
 .heart-on  { opacity: 1 }
 .heart-off { opacity: .25; filter: grayscale(1) }
 

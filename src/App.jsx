@@ -407,7 +407,7 @@ function ModeSelectScreen({ onSelect, onBack }) {
 //  GAME SCREEN
 // ─────────────────────────────────────────────────────────────
 
-function GameScreen({ grade, exerciseMode, questions, currentQ, score, lives, streak, feedback, inputValue, onChoice, onInput, onSubmit, onKeyDown }) {
+function GameScreen({ grade, exerciseMode, questions, currentQ, score, lives, streak, feedback, inputValue, onChoice, onInput, onSubmit, onKeyDown, onExit }) {
   const cfg   = GRADE[grade]
   const q     = questions[currentQ]
   const iRef  = useRef(null)
@@ -426,7 +426,7 @@ function GameScreen({ grade, exerciseMode, questions, currentQ, score, lives, st
 
       {/* ─ Header ─ */}
       <div className="game-header">
-        <Lives count={lives}/>
+        <button className="exit-btn" onClick={onExit} title="Beenden">🏠</button>
         <div className="qcount">
           <span className="qc-now">{currentQ+1}</span>
           <span className="qc-sep">/</span>
@@ -434,6 +434,7 @@ function GameScreen({ grade, exerciseMode, questions, currentQ, score, lives, st
         </div>
         <div className="score-chip" style={{ color: cfg.color }}>⭐ {score}</div>
       </div>
+      <Lives count={lives}/>
 
       <ProgressBar pct={((currentQ + (feedback?1:0)) / TOTAL_QUESTIONS) * 100} color={cfg.color}/>
 
@@ -658,6 +659,7 @@ export default function App() {
           onChoice={handleAnswer} onInput={setInputValue}
           onSubmit={() => inputValue && handleAnswer(inputValue)}
           onKeyDown={handleKey}
+          onExit={() => { clearTimeout(timer.current); setScreen('welcome') }}
         />
       )}
       {screen === 'result' && grade && (
