@@ -466,7 +466,7 @@ function GameScreen({grade,exerciseMode,questions,currentQ,score,lives,streak,fe
       </div>
 
       {isChoice ? (
-        <div className="choices-grid">
+        <div className="choices-grid" key={currentQ}>
           {q.choices.map((ch,i) => (
             <button key={i}
               className={`choice-btn ${feedback&&ch===q.answer?'cb-correct':''} ${feedback&&ch!==q.answer?'cb-dim':''}`}

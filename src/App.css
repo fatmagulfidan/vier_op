@@ -360,6 +360,7 @@ input  { font-family: inherit }
   box-shadow: 0 8px 22px rgba(0,0,0,.15);
 }
 .choice-btn:active:not(:disabled) { transform: scale(.96) }
+.choice-btn:focus { outline: none }
 .cb-correct { background: #27AE60 !important; border-color: #27AE60 !important; color: white !important; animation: bounceOk .35s ease }
 .cb-dim { opacity: .3 }
 
